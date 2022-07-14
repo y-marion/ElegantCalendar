@@ -16,7 +16,7 @@ public struct CalendarConfiguration: Equatable {
         self.ascending = ascending
         self.startDate = startDate
         self.endDate = endDate
-        self.accessoryViewEnabled = accessoryTextEnabled
+        self.accessoryViewEnabled = accessoryViewEnabled
     }
 
     var referenceDate: Date {
