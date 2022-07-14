@@ -95,7 +95,7 @@ private struct CircularSelectionView: View {
 
     var body: some View {
         Circle()
-            .stroke(theme.primary, lineWidth: 2)
+            .stroke(theme.titleColor, lineWidth: 2)
             .frame(width: radius, height: radius)
             .opacity(startBounce ? 1 : 0)
             .animation(.interpolatingSpring(stiffness: 150, damping: 10))
