@@ -38,7 +38,7 @@ public extension CalendarTheme {
 
 extension CalendarTheme {
 
-    static let `default`: CalendarTheme = .royalBlue
+    public static let `default`: CalendarTheme = .royalBlue
 
 }
 

@@ -29,10 +29,11 @@ struct MonthView: View, MonthlyCalendarManagerDirectAccess {
                 .padding(.leading, CalendarConstants.Monthly.outerHorizontalPadding)
                 .onTapGesture { self.communicator?.showYearlyView() }
             weeksViewWithDaysOfWeekHeader
-            if selectedDate != nil {
+            if calendarManager.accessoryViewEnabled,
+               let selectedDate = selectedDate {
                 calenderAccessoryView
                     .padding(.leading, CalendarConstants.Monthly.outerHorizontalPadding)
-                    .id(selectedDate!)
+                    .id(selectedDate)
             }
             Spacer()
         }
@@ -185,7 +186,8 @@ private struct CalendarAccessoryView: View, MonthlyCalendarManagerDirectAccess {
 
 struct MonthView_Previews: PreviewProvider {
     static var previews: some View {
-        LightDarkThemePreview {
+        CalendarConstants.Monthly.cellWidth = 250
+        return LightDarkThemePreview {
             MonthView(calendarManager: .mock, month: Date())
 
             MonthView(calendarManager: .mock, month: .daysFromToday(45))

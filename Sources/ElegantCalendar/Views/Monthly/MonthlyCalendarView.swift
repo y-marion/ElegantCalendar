@@ -5,8 +5,8 @@ import SwiftUI
 
 public struct MonthlyCalendarView: View, MonthlyCalendarManagerDirectAccess {
 
-    var theme: CalendarTheme = .default
-    public var axis: Axis = .vertical
+    public var theme: CalendarTheme
+    public var axis: Axis
 
     @ObservedObject public var calendarManager: MonthlyCalendarManager
 
@@ -19,8 +19,10 @@ public struct MonthlyCalendarView: View, MonthlyCalendarManagerDirectAccess {
         calendar.isDate(currentMonth, equalTo: Date(), toGranularities: [.month, .year])
     }
 
-    public init(calendarManager: MonthlyCalendarManager) {
+    public init(calendarManager: MonthlyCalendarManager, axis: Axis = .vertical, theme: CalendarTheme = .default) {
         self.calendarManager = calendarManager
+        self.axis = axis
+        self.theme = theme
     }
 
     public var body: some View {
@@ -42,7 +44,7 @@ public struct MonthlyCalendarView: View, MonthlyCalendarManagerDirectAccess {
                     .transition(.opacity)
             }
         }
-        .frame(height: CalendarConstants.cellHeight)
+        .frame(height: geometry.size.height)
     }
 
     private var monthsList: some View {
@@ -82,7 +84,10 @@ public struct MonthlyCalendarView: View, MonthlyCalendarManagerDirectAccess {
 struct MonthlyCalendarView_Previews: PreviewProvider {
     static var previews: some View {
         LightDarkThemePreview {
-            MonthlyCalendarView(calendarManager: .mock)
+            VStack(spacing: 0) {
+                Text("test")
+                MonthlyCalendarView(calendarManager: .mock, axis: .horizontal, theme: .kiwiGreen)
+            }
 
             MonthlyCalendarView(calendarManager: .mockWithInitialMonth)
         }
