@@ -90,11 +90,12 @@ struct DayView: View, MonthlyCalendarManagerDirectAccess {
 
 private struct CircularSelectionView: View {
 
+    @Environment(\.calendarTheme) var theme: CalendarTheme
     @State private var startBounce = false
 
     var body: some View {
         Circle()
-            .stroke(Color.primary, lineWidth: 2)
+            .stroke(theme.primary, lineWidth: 2)
             .frame(width: radius, height: radius)
             .opacity(startBounce ? 1 : 0)
             .animation(.interpolatingSpring(stiffness: 150, damping: 10))
