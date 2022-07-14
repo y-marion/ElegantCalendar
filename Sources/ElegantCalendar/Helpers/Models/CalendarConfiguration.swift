@@ -28,10 +28,17 @@ public struct CalendarConfiguration: Equatable {
 extension CalendarConfiguration {
 
     static let mock = CalendarConfiguration(
+        calendar: germanCalendar,
         startDate: .daysFromToday(-365*2),
         endDate: .daysFromToday(365*2),
         accessoryViewEnabled: true
     )
+    
+    static var germanCalendar: Calendar {
+        var calendar = Calendar.current
+        calendar.locale = .init(identifier: "en_US")
+        return calendar
+    }
 
 }
 
